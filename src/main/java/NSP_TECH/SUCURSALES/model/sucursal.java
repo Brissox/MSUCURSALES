@@ -24,15 +24,15 @@ public class sucursal {
 @Column(name="ID_SUCURSAL")
 private Long ID_SUCURSAL;
 
-@Column(name="DIRECCION")
+@Column(name="DIRECCION",nullable= false, length=50)
 private String DIRECCION;
 
-@Column(name="CIUDAD")
+@Column(name="CIUDAD",nullable= false, length=30)
 private String CIUDAD;
 
-@Column(name="TELEFONO")
+@Column(name="TELEFONO", nullable=true, precision=9)
 private int TELEFONO;
 
-@Column(name="ESTADO")
+@Column(name="ESTADO",nullable= false, length=1)
 private char ESTADO;
 }
