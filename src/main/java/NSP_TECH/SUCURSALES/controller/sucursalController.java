@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,18 +56,6 @@ public class sucursalController {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("No se puede registrar el Producto");
     }
     }
-
-    @DeleteMapping("/{ID_SUCURSAL}")
-        public ResponseEntity<String> EliminarProducto(@PathVariable Long ID_SUCURSAL){
-            try {
-                sucursal sBuscado = sServices.BuscarUnaSucursal(ID_SUCURSAL);
-                sServices.EliminarSucursal(ID_SUCURSAL);
-                return ResponseEntity.status(HttpStatus.OK).body("Se elimina Sucursal");
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sucursal no registrada");
-            }
-        }
-
         @PutMapping("/{ID_SUCURSAL}") //SOLO PERMITE ACTUALIZAR ESCRIBIENDO TODOS LOS DATOS
         
     public ResponseEntity<?> ActualizarProducto(@PathVariable Long ID_SUCURSAL, @RequestBody sucursal sActualizar){
@@ -85,6 +72,17 @@ public class sucursalController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sucursal no registrada");
         }
     }
-    
+    /*
+    @DeleteMapping("/{ID_SUCURSAL}")
+        public ResponseEntity<String> EliminarProducto(@PathVariable Long ID_SUCURSAL){
+            try {
+                sucursal sBuscado = sServices.BuscarUnaSucursal(ID_SUCURSAL);
+                sServices.EliminarSucursal(ID_SUCURSAL);
+                return ResponseEntity.status(HttpStatus.OK).body("Se elimina Sucursal");
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sucursal no registrada");
+            }
+        }
+     */
 
 }
