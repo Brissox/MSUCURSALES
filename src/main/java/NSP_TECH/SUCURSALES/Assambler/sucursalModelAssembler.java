@@ -17,9 +17,9 @@ public class sucursalModelAssembler implements RepresentationModelAssembler<sucu
 public EntityModel<sucursal> toModel(sucursal s) {
     return EntityModel.of(
     s,
-            linkTo(methodOn(sucursalController.class).BuscarProducto(s.getID_SUCURSAL())).withRel("LINKS"),
+            linkTo(methodOn(sucursalController.class).BuscarProducto(s.getId_sucursal())).withRel("LINKS"),
             linkTo(methodOn(sucursalController.class).ListarSucursales()).withRel("todas-las-sucursales"),
-            linkTo(methodOn(sucursalController.class).ActualizarSucursal(s.getID_SUCURSAL(), s)).withRel("actualiza-una-sucursal")
+            linkTo(methodOn(sucursalController.class).ActualizarSucursal(s.getId_sucursal(), s)).withRel("actualiza-una-sucursal")
     );
 }
 

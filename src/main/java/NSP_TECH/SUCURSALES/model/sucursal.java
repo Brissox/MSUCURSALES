@@ -25,21 +25,21 @@ public class sucursal {
 @Id
 @GeneratedValue(strategy= GenerationType.IDENTITY )
 @Column(name="ID_SUCURSAL")
-private Long ID_SUCURSAL;
+private Long id_sucursal;
 
 @Column(name="DIRECCION",nullable= false, length=50)
 @Schema(description="")
-private String DIRECCION;
+private String direccion;
 
 @Column(name="CIUDAD",nullable= false, length=30)
 @Schema(description="")
-private String CIUDAD;
+private String ciudad;
 
 @Column(name="TELEFONO", nullable=true, precision=9)
 @Schema(description="")
-private int TELEFONO;
+private int telefono;
 
 @Column(name="ESTADO",nullable= false, length=1)
 @Schema(description="")
-private char ESTADO;
+private char estado;
 }

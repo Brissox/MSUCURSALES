@@ -82,7 +82,7 @@ public class sucursalController {
 
     // ENDPOINT PARA REGISTRAR UNA NUEVA SUCURSAL
     @PostMapping
-    @Operation(summary = "ENDPOINT QUE REGISTRA UNA SUCURSAL", description = "ENDPOINT QUE REGISTRA UNA SUCURSAL",requestBody= @io.swagger.v3.oas.annotations.parameters.RequestBody(description="SUCURSAL QUE SE VA A REGISTRAR", required = true), Content = @Content(schema = @Schema(implementation = sucursal.class)))
+    @Operation(summary = "ENDPOINT QUE REGISTRA UNA SUCURSAL", description = "ENDPOINT QUE REGISTRA UNA SUCURSAL",requestBody= @io.swagger.v3.oas.annotations.parameters.RequestBody(description="SUCURSAL QUE SE VA A REGISTRAR", required = true, content = @Content(schema = @Schema(implementation = sucursal.class))))
     @ApiResponses (value = {
         @ApiResponse(responseCode = "200", description = "Se registro correctamente la sucursal", content = @Content(mediaType = "application/json", schema = @Schema(implementation = sucursal.class))),
         @ApiResponse(responseCode = "500", description = "Indica que no se logro registrar la sucursal", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "No se puede registrar la sucursal")))
@@ -102,7 +102,7 @@ public class sucursalController {
 
     @PutMapping("/{ID_SUCURSAL}") //SOLO PERMITE ACTUALIZAR ESCRIBIENDO TODOS LOS DATOS
 
-    @Operation(summary = "ENDPOINT QUE EDITA UNA SUCURSAL", description = "ENDPOINT QUE EDITA UNA SUCURSAL", requestBody=@io.swagger.v3.oas.annotations.parameters.RequestBody(description="SUCURSAL QUE SE VA A ACTUALIZAR", required = true), Content = @Content(schema = @Schema(implementation = sucursal.class)))
+    @Operation(summary = "ENDPOINT QUE EDITA UNA SUCURSAL", description = "ENDPOINT QUE EDITA UNA SUCURSAL", requestBody=@io.swagger.v3.oas.annotations.parameters.RequestBody(description="SUCURSAL QUE SE VA A ACTUALIZAR", required = true, content = @Content(schema = @Schema(implementation = sucursal.class))))
     @Parameters (value = {
     @Parameter (name="ID_SUCURSAL", description= "ID de la sucursal que se editara", in = ParameterIn.PATH, required= true)})
 
@@ -116,11 +116,11 @@ public class sucursalController {
     public ResponseEntity<?> ActualizarSucursal(@PathVariable Long ID_SUCURSAL, @RequestBody sucursal sActualizar){
         try {
             sucursal sActualizado = sServices.BuscarUnaSucursal(ID_SUCURSAL);
-            sActualizado.setID_SUCURSAL(sActualizar.getID_SUCURSAL());
-            sActualizado.setDIRECCION(sActualizar.getDIRECCION());
-            sActualizado.setCIUDAD(sActualizar.getCIUDAD());
-            sActualizado.setTELEFONO(sActualizar.getTELEFONO());
-            sActualizado.setESTADO(sActualizar.getESTADO());
+            sActualizado.setId_sucursal(sActualizar.getId_sucursal());
+            sActualizado.setDireccion(sActualizar.getDireccion());
+            sActualizado.setCiudad(sActualizar.getCiudad());
+            sActualizado.setTelefono(sActualizar.getTelefono());
+            sActualizado.setEstado(sActualizar.getEstado());
             sServices.GuardarSucursal(sActualizado);
             return ResponseEntity.ok((assambler.toModel(sActualizado)));
         } catch (Exception e) {
