@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -103,19 +105,41 @@ public class sucursalesServiceTest {
 
     }
 
+    @Test
+    public void testEditarSucursal(){
 
-/*
+        sucursal sucOriginal = new sucursal();
+        sucOriginal.setId_sucursal(11L);
+        sucOriginal.setCiudad("Santiago");
+        sucOriginal.setDireccion("Av. Siempre viva 123");
+
+        sucursal sucEditado = new sucursal();
+        sucEditado.setId_sucursal(11L);
+        sucEditado.setCiudad("Springfield");
+        sucEditado.setDireccion("Av. Siempre viva 123");
+
+        when(sucursalrepository.save(any(sucursal.class))).thenReturn(sucEditado);
+        when(sucursalrepository.existsById(11L)).thenReturn(true);
+        sucursal resultado = sucursalservices.GuardarSucursal(sucEditado);
+
+        assertNotNull(resultado);
+        assertEquals(11L, resultado.getId_sucursal());
+        assertEquals("Springfield", resultado.getCiudad());
+        assertEquals("Av. Siempre viva 123", resultado.getDireccion());
+
+        verify(sucursalrepository, times(1)).save(sucEditado);
+    }
 
     @Test
-    public void testEliminarEnvio(){
+    public void testEliminarSucursal(){
         Long id = 11L;
-        doNothing().when(enviorepository).deleteById(id);
+        doNothing().when(sucursalrepository).deleteById(id);
 
-        enviosservices.Eliminar***(id);
+        sucursalservices.EliminarSucursal(11L);
 
-        verify(enviosrepository.times(1)).deleteById(id);
+        verify(sucursalrepository, times(1)).deleteById(id);
 
     }
-*/
+
 }
 
